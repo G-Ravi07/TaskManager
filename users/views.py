@@ -3,9 +3,6 @@ from django.contrib.auth import authenticate, login, logout
 from .models import User
 from django.http import HttpResponse
 
-def login_view(request):
-    return HttpResponse("LOGIN WORKING")
-
 def signup_view(request):
     if request.method == "POST":
         username = request.POST['username']
