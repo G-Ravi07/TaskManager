@@ -1,6 +1,7 @@
 from django.shortcuts import render, redirect
 from django.contrib.auth import authenticate, login, logout
 from .models import User
+from django.http import HttpResponse
 
 def signup_view(request):
     if request.method == "POST":
@@ -19,18 +20,9 @@ def signup_view(request):
 
     return render(request, "signup.html")
 
+
 def login_view(request):
-    if request.method == "POST":
-        user = authenticate(
-            username=request.POST['username'],
-            password=request.POST['password']
-        )
-
-        if user:
-            login(request, user)
-            return redirect('dashboard')
-
-    return render(request, "login.html")
+    return HttpResponse("LOGIN WORKING")
 
 def logout_view(request):
     logout(request)
