@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Dashboard</title>
+</head>
+<body>
+
+<h2>Dashboard</h2>
+
+<a href="/logout/">Logout</a>
+
+<h3>Create Task</h3>
+<form method="POST">
+    {% csrf_token %}
+    <input name="title" placeholder="Task title"><br><br>
+
+    <select name="project">
+        {% for p in projects %}
+            <option value="{{p.id}}">{{p.name}}</option>
+        {% endfor %}
+    </select><br><br>
+
+    <select name="assigned">
+        {% for u in users %}
+            <option value="{{u.id}}">{{u.username}}</option>
+        {% endfor %}
+    </select><br><br>
+
+    <input type="date" name="due"><br><br>
+
+    <button type="submit">Create Task</button>
+</form>
+
+<hr>
+
+<h3>My Tasks</h3>
+<ul>
+{% for task in tasks %}
+    <li>{{task.title}} - {{task.status}}</li>
+{% endfor %}
+</ul>
+
+<h3>Overdue Tasks: {{overdue}}</h3>
+
+</body>
+</html>
